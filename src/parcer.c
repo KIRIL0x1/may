@@ -4,7 +4,7 @@ void nospace(char *str) {
     int i = 0, j = 0;
    
     while (str[i] != '\0') {
-        if (str[i] != ' ') {
+        if (str[i] != ' ' && str[i] != '\n' && str[i] != '\t') {
             str[j++] = str[i];  
         };
         i++;
@@ -12,7 +12,7 @@ void nospace(char *str) {
     str[j] = '\0';  
 };
 
-void riv_perc(char* expr,zmin* t,char* buff){
+void equ_perc(char* expr,var* t,char* buff){
     int k = 0;
     for(int i = 0; i < strlen(expr);i++){
         bool coun = false;
@@ -34,7 +34,8 @@ void riv_perc(char* expr,zmin* t,char* buff){
 
 };
 
-void parcer_main(char* expr,char* buff,char* file_name){
+void parcer_main(char* buff,char* file_name){
+    char expr[N] = {'\0'};
    
     FILE *file = fopen(file_name, "r");
     
@@ -43,7 +44,7 @@ void parcer_main(char* expr,char* buff,char* file_name){
         exit(1);
     };
 
-    zmin t[10] = {'\0'};
+    var t[N] = {'\0'};
     
     char line[N];
     
@@ -60,19 +61,7 @@ void parcer_main(char* expr,char* buff,char* file_name){
     };
 
     fclose(file);
-    riv_perc(expr,t,buff);    
+    equ_perc(expr,t,buff);    
 };
 
 
-/*
- *добавити
- *let{n = 10}
- *let{x = 2}
- *sum{
- *   from(0){
- *      x
- *   }to(n)
- * }
- *добавити обчислення квадратного рiвняння
- *що значить додати 10 разiв два
- */

@@ -1,6 +1,6 @@
 CC = gcc
 CFLAGS = -Wall
-TARGET = m.exe
+TARGET = may.exe
 
 PREF_SRC = ./src/
 
